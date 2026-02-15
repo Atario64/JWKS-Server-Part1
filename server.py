@@ -22,10 +22,10 @@ class Key:
 def generate_rsa_key(ttl_seconds: int) -> Key:
     # Generates a pair of RSA keys
     privateKey = rsa.generate_private_key(public_exponent=65537, key_size=2048)
-    publicKey = private_key.public_key()
+    publicKey = privateKey.public_key()
 
     # Serialize public key to DER for kid generation
-    pub_der = public_key.public_bytes(
+    pub_der = publicKey.public_bytes(
         encoding=serialization.Encoding.DER,
         format=serialization.PublicFormat.SubjectPublicKeyInfo,
     )
@@ -121,4 +121,5 @@ def auth():
 # Run the server on port 8080
 if __name__ == "__main__":
     # Run on port 8080
+
     app.run(host="0.0.0.0", port=8080)
